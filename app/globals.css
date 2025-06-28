@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  direction: rtl;
+  ;
+  
+}
+
+@layer components {
+  .fancy-corners {
+    position: relative;
+    background-color: #fff;
+    transform-style: preserve-3d;
+  }
+
+  .fancy-corners:after,
+  .fancy-corners:before {
+    position: absolute;
+    width: 8em;
+    height: 8em;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    transform: translateZ(-1px);
+    z-index: -1;
+    background-color: purple; /* default background color */
+  }
+
+  [data-theme="blue"] .fancy-corners:after,
+  [data-theme="blue"] .fancy-corners:before {
+    background-color: blue;
+  }
+
+  [data-theme="teal"] .fancy-corners:after,
+  [data-theme="teal"] .fancy-corners:before {
+    background-color: teal;
+  }
+
+  /* Additional styles for different corner positions */
+  .fancy-corners--top-left:before {
+    -webkit-mask-image: linear-gradient(-45deg, #fff 85.5%, transparent 0);
+    mask-image: linear-gradient(-45deg, #fff 85.5%, transparent 0);
+  }
+
+  .fancy-corners--bottom-right:after {
+    -webkit-mask-image: linear-gradient(-45deg, transparent 14.5%, #fff 0);
+    mask-image: linear-gradient(-45deg, transparent 14.5%, #fff 0);
+  }
+
+  @screen lg {
+    .fancy-corners--large:after,
+    .fancy-corners--large:before {
+      width: 14em;
+      height: 14em;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes pulseCard {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-card {
+  animation: pulseCard 2s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+/* {data.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          ))}*/
+          @tailwind base;
+          @tailwind components;
+          @tailwind utilities;
+          
+          :root {
+            --background: #ffffff;
+            --foreground: #171717;
+          
+          
+          ;
+          }
+          
+          
+          @media (prefers-color-scheme: dark) {
+            :root {
+              --background: #0a0a0a;
+              --foreground: #ededed;
+            }
+          }
+          
+          body {
+            color: var(--foreground);
+            direction: rtl;
+            
+          }
+          @layer components {
+            .fancy-corners {
+              position: relative;
+              background-color: #fff;
+              transform-style: preserve-3d;
+            }
+          
+            .fancy-corners:after,
+            .fancy-corners:before {
+              position: absolute;
+              width: 8em;
+              height: 8em;
+              background-size: 100% 100%;
+              background-position: 0 0;
+              transform: translateZ(-1px);
+              z-index: -1;
+              background-color: purple; /* default background color */
+            }
+            .clip-hexagon {
+              clip-path: polygon(
+                25% 5.77%, 75% 5.77%,
+                100% 50%,
+                75% 94.23%, 25% 94.23%,
+                0% 50%
+              );
+              -webkit-clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+
+            }
+            
+            [data-theme="blue"] .fancy-corners:after,
+            [data-theme="blue"] .fancy-corners:before {
+              background-color: blue;
+            }
+          
+            [data-theme="teal"] .fancy-corners:after,
+            [data-theme="teal"] .fancy-corners:before {
+              background-color: teal;
+            }
+          
+            /* Additional styles for different corner positions */
+            .fancy-corners--top-left:before {
+              -webkit-mask-image: linear-gradient(-45deg, #fff 85.5%, transparent 0);
+              mask-image: linear-gradient(-45deg, #fff 85.5%, transparent 0);
+            }
+          
+            .fancy-corners--bottom-right:after {
+              -webkit-mask-image: linear-gradient(-45deg, transparent 14.5%, #fff 0);
+              mask-image: linear-gradient(-45deg, transparent 14.5%, #fff 0);
+            }
+            body {
+              font-family: inherit;
+            }
+            @screen lg {
+              .fancy-corners--large:after,
+              .fancy-corners--large:before {
+                width: 14em;
+                height: 14em;
+              }
+            }
+          }
+          @layer utilities {
+            .clip-path-top {
+              clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 50% 100%, 0% 50%);
+            }
+            .curved-card {
+              background: white;
+              padding: 1.5rem;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+              border: 1px solid #e5e7eb;
+              clip-path: polygon(10% 0%, 90% 0%, 100% 20%, 100% 80%, 90% 100%, 70% 100%, 0% 80%, 0% 20%);
+              
+            }
+            
+          }
+          @layer utilities {
+            .text-balance {
+              text-wrap: balance;
+            }
+          }
+          @keyframes float {
+            0% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
+            100% {
+              transform: translateY(0);
+            }
+          }
+          
+          .animate-float {
+            animation: float 3s ease-in-out infinite;
+          }
+          /* {data.map((item) => (
+                      <li key={item.id}>{item.name}</li>
+                    ))}*/
+          
