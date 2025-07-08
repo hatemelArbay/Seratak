@@ -7,7 +7,7 @@ import HeroSection from "../_components/HeroSection";
 import { FaDiamond } from "react-icons/fa6";
 import { GiSilverBullet } from "react-icons/gi";
 import Link from "next/link";
-import { useEffect ,useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const packages = [
@@ -22,6 +22,7 @@ const packages = [
       "تسليم خلال 3 أيام عمل",
     ],
     color: "border-[#ccc]",
+    price: "250",
   },
   {
     name: "باقة الماس",
@@ -36,6 +37,7 @@ const packages = [
       "دعم عبر واتساب لمدة أسبوع",
     ],
     color: "border-blue-200",
+    price: "450",
   },
   {
     name: "الباقة الذهبية",
@@ -48,6 +50,7 @@ const packages = [
       "مراجعة مجانية خلال 7 أيام بعد التسليم",
     ],
     color: "border-yellow-500",
+    price: "280",
   },
   {
     name: "الباقة المميزة",
@@ -63,23 +66,23 @@ const packages = [
       "دعم شخصي لمدة أسبوعين بعد التسليم",
     ],
     color: "border-yellow-700",
+    price: "150",
   },
 ];
 
 const Page = () => {
-      const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
-      const [bundles,setBundles]= useState([]);
+  const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
+  const [bundles, setBundles] = useState([]);
 
-  useEffect(()=>{
-    const fetchBundles =async()=>{
+  useEffect(() => {
+    const fetchBundles = async () => {
       const response = await axios.get(`${baseUrl}/clientBundle/getBundles`);
-      if (response){
+      if (response) {
         setBundles(response.data.bundles);
-        
       }
-    }
+    };
     fetchBundles();
-  },[])
+  }, []);
   return (
     <>
       <div className="absolute top-[36rem] left-0 w-full h-1/6 bg-[#153d3e] clip-path-top"></div>
@@ -93,15 +96,18 @@ const Page = () => {
             <div
               key={index}
               className={`bg-white rounded-2xl hover:scale-105 shadow-2xl p-6 flex flex-col items-center border-t-4 ${pkg.color} hover:shadow-xl transition`}
-              style={{ 
+              style={{
                 borderTopColor: pkg.color,
-                 borderTopWidth: '4px',
-
+                borderTopWidth: "4px",
               }}
             >
               <div className="mb-4 text-4xl">{pkg.icon}</div>
+
               <h3 className="text-xl font-bold mb-4 text-[#153d3e]">
                 {pkg.title}
+              </h3>
+              <h3 className="text-2xl font-bold my-4 text-[#153d3e]">
+                {pkg.price} <b className="text-orange-300">Egp</b>
               </h3>
               <ul className="text-gray-700 space-y-2 w-full text-right">
                 {pkg.features.map((feature, i) => (

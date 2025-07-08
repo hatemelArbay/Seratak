@@ -70,6 +70,13 @@ const Footer = () => {
                 </span>
               </Link>
             </li>
+            <li>
+              <Link href="/BLog" className="no-underline">
+                <span className="hover:underline no-underline text-white">
+                  المقالات{" "}
+                </span>
+              </Link>
+            </li>
           </ul>
         </div>
         <div>

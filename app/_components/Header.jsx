@@ -18,6 +18,7 @@ export default function Header() {
     { name: "نبذه عنا ", href: "/nabza" },
     { name: " شركاء النجاح", href: "/shorkai" },
     { name: "تواصل معنا", href: "/twasal" },
+    { name: "المقالات", href: "/Blog" },
   ];
 
   useEffect(() => {
