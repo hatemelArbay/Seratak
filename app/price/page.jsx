@@ -1,7 +1,7 @@
 "use client";
 
 import { FaCheckCircle } from "react-icons/fa";
-import { MdOutlineWorkspacePremium, MdWorkspacePremium } from "react-icons/md";
+import { MdOutlineWorkspacePremium } from "react-icons/md";
 import { PiCrownSimpleFill } from "react-icons/pi";
 import HeroSection from "../_components/HeroSection";
 import { FaDiamond } from "react-icons/fa6";
@@ -9,103 +9,32 @@ import { GiSilverBullet } from "react-icons/gi";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {Commet} from "react-loading-indicators"
-
-const packages = [
-  {
-    name: "الباقة الفضية",
-    icon: <GiSilverBullet className="text-[#153d3e] text-4xl" />,
-    services: [
-      "سيرة ذاتية بنظام ATS المعتمد بلغة عربية",
-      "خطاب توظيفي باللغة العربية",
-      "تعديل مجاني مرة واحدة",
-      "نصائح سريعة لتحسين السيرة الذاتية بصيغة PDF",
-      "تسليم خلال 3 أيام عمل",
-    ],
-    color: "border-[#ccc]",
-    price: "250",
-  },
-  {
-    name: "باقة الماس",
-    icon: <FaDiamond className="text-blue-400 text-4xl" />,
-    services: [
-      "سيرة ذاتية بنظام ATS المعتمد متعددة اللغات",
-      "خطاب توظيفي متعدد اللغات",
-      "تطوير وتحسين حساب لينكد إن",
-      "التقديم على الوظائف",
-      "مراجعة مخصصة مع مستشار مهني",
-      "تصميم احترافي اختياري للسيرة الذاتية",
-      "دعم عبر واتساب لمدة أسبوع",
-    ],
-    color: "border-blue-200",
-    price: "450",
-  },
-  {
-    name: "الباقة الذهبية",
-    icon: <PiCrownSimpleFill className="text-yellow-400 text-4xl" />,
-    services: [
-      "سيرة ذاتية بنظام ATS المعتمد متعددة اللغات",
-      "خطاب توظيفي متعدد اللغات",
-      "تطوير وتحسين حساب لينكد إن",
-      "تصميم احترافي للسيرة الذاتية (نسخة PDF و Word)",
-      "مراجعة مجانية خلال 7 أيام بعد التسليم",
-    ],
-    color: "border-yellow-500",
-    price: "280",
-  },
-  {
-    name: "الباقة المميزة",
-    icon: <MdOutlineWorkspacePremium className="text-yellow-600 text-4xl" />,
-    services: [
-      "سيرة ذاتية بنظام ATS المعتمد متعددة اللغات",
-      "خطاب توظيفي متعدد اللغات",
-      "تطوير وتحسين حساب لينكد إن",
-      "التقديم على الوظائف",
-      "التدرب على مقابلات العمل مع خبير مهني متخصص",
-      "تصميم بصري مخصص يناسب المجال الوظيفي",
-      "جلسة استشارية مهنية (30 دقيقة)",
-      "دعم شخصي لمدة أسبوعين بعد التسليم",
-    ],
-    color: "border-yellow-700",
-    price: "150",
-  },
-];
+import { Commet } from "react-loading-indicators";
 
 const Page = () => {
-<<<<<<< Updated upstream
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
   const [bundles, setBundles] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchBundles = async () => {
-=======
-      const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
-      const [bundles,setBundles]= useState([]);
-      const [loading,setLoading] = useState(false);
-      
-
-  useEffect(()=>{
-    const fetchBundles =async()=>{
-      setLoading(true);
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-      const response = await axios.get(`${baseUrl}/clientBundle/getBundles`);
-      if (response) {
-        setBundles(response.data.bundles);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
+      try {
+        setLoading(true);
+        const response = await axios.get(`${baseUrl}/clientBundle/getBundles`);
+        if (response) {
+          console.log(response.data.bundles );
+          setBundles(response.data.bundles || []);
+        }
+      } catch (error) {
+        console.error("Failed to fetch bundles:", error);
+      } finally {
         setLoading(false);
-        
->>>>>>> Stashed changes
       }
     };
+
     fetchBundles();
   }, []);
+
   return (
     <>
       <div className="absolute top-[36rem] left-0 w-full h-1/6 bg-[#153d3e] clip-path-top"></div>
@@ -113,23 +42,30 @@ const Page = () => {
         <h2 className="text-3xl font-bold text-center my-10 text-[#153d3e]">
           اختر الباقة الأنسب أو صمّم باقتك الخاصة!
         </h2>
-          {loading && 
-          (
-            <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <Commet className="justify-center" color="#153d3d" size="medium" text="" textColor="#1e1e1e" />
-            </div>
-          )}
+
+        {loading && (
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <Commet
+              className="justify-center"
+              color="#153d3d"
+              size="medium"
+              text=""
+              textColor="#1e1e1e"
+            />
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {bundles.map((pkg, index) => (
             <div
               key={index}
-              className={`bg-white rounded-2xl hover:scale-105 shadow-2xl p-6 flex flex-col items-center border-t-4 ${pkg.color} hover:shadow-xl transition`}
+              className={`bg-white rounded-2xl hover:scale-105 shadow-2xl p-6 flex flex-col items-center border-t-4 ${pkg.color || ""} hover:shadow-xl transition`}
               style={{
-                borderTopColor: pkg.color,
+                borderTopColor: pkg.color || "#ccc",
                 borderTopWidth: "4px",
               }}
             >
-              <div className="mb-4 text-4xl">{pkg.icon}</div>
+              <div className="mb-4 text-4xl">{pkg.icon || <FaCheckCircle />}</div>
 
               <h3 className="text-xl font-bold mb-4 text-[#153d3e]">
                 {pkg.title}
@@ -138,7 +74,7 @@ const Page = () => {
                 {pkg.price} <b className="text-orange-300">Egp</b>
               </h3>
               <ul className="text-gray-700 space-y-2 w-full text-right">
-                {pkg.features.map((feature, i) => (
+                {(pkg.features || []).map((feature, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <b className="text-orange-400 pl-1">✔</b>
                     <span>{feature}</span>
@@ -154,13 +90,14 @@ const Page = () => {
             </div>
           ))}
         </div>
+
         <div className="mt-16 w-96 mx-auto bg-[#153d3e] text-white p-8 rounded-2xl text-center">
           <h3 className="text-2xl font-semibold mb-8">
             صمم باقاتك التي تناسبك الأن{" "}
           </h3>
           <Link
             href="/twasal"
-            className="bg-[#ffb366]  text-[#153d3e] font-bold py-3 px-6 rounded-xl hover:bg-[#ff9933] transition-all"
+            className="bg-[#ffb366] text-[#153d3e] font-bold py-3 px-6 rounded-xl hover:bg-[#ff9933] transition-all"
           >
             اطلب سيرتك
           </Link>
