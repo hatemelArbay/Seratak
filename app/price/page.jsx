@@ -9,6 +9,7 @@ import { GiSilverBullet } from "react-icons/gi";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {Commet} from "react-loading-indicators"
 
 const packages = [
   {
@@ -71,14 +72,30 @@ const packages = [
 ];
 
 const Page = () => {
+<<<<<<< Updated upstream
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
   const [bundles, setBundles] = useState([]);
 
   useEffect(() => {
     const fetchBundles = async () => {
+=======
+      const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
+      const [bundles,setBundles]= useState([]);
+      const [loading,setLoading] = useState(false);
+      
+
+  useEffect(()=>{
+    const fetchBundles =async()=>{
+      setLoading(true);
+>>>>>>> Stashed changes
       const response = await axios.get(`${baseUrl}/clientBundle/getBundles`);
       if (response) {
         setBundles(response.data.bundles);
+<<<<<<< Updated upstream
+=======
+        setLoading(false);
+        
+>>>>>>> Stashed changes
       }
     };
     fetchBundles();
@@ -90,7 +107,12 @@ const Page = () => {
         <h2 className="text-3xl font-bold text-center my-10 text-[#153d3e]">
           اختر الباقة الأنسب أو صمّم باقتك الخاصة!
         </h2>
-
+          {loading && 
+          (
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <Commet className="justify-center" color="#153d3d" size="medium" text="" textColor="#1e1e1e" />
+            </div>
+          )}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {bundles.map((pkg, index) => (
             <div
