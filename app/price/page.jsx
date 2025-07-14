@@ -87,12 +87,18 @@ const Page = () => {
   useEffect(()=>{
     const fetchBundles =async()=>{
       setLoading(true);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       const response = await axios.get(`${baseUrl}/clientBundle/getBundles`);
       if (response) {
         setBundles(response.data.bundles);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
         setLoading(false);
         
 >>>>>>> Stashed changes
